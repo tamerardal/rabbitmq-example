@@ -52,15 +52,13 @@ Before you begin, ensure you have met the following requirements:
 
 ## Usage
 
-1. Start the RabbitMQ server if it is not already running. You can download and install RabbitMQ from [here](https://www.rabbitmq.com/download.html).
-
-2. Run the Spring Boot application:
+1. Run the Spring Boot application:
 
     ```bash
     mvn spring-boot:run
     ```
 
-3. The application will send a message to the RabbitMQ exchange and log the received message.
+2. The application will send a message to the RabbitMQ exchange and log the received message.
 
 ## Configuration
 
@@ -72,47 +70,35 @@ The configuration for RabbitMQ is located in the `RabbitmqExampleApplication` cl
 
 You can modify these settings in the `RabbitmqExampleApplication` class as needed.
 
-### Example Code Snippets
+# RabbitMQ with Docker
 
-#### RabbitmqExampleApplication
+This guide explains how to set up and run RabbitMQ using Docker and Docker Compose.
 
-```java
-@SpringBootApplication
-public class RabbitmqExampleApplication {
-    public static final String topicExchangeName = "spring-boot-exchange";
-    public static final String queueName = "spring-boot";
+## Prerequisites
 
-    @Bean
-    Queue queue() {
-        return new Queue(queueName, false);
-    }
+Ensure you have Docker and Docker Compose installed on your system. You can download them from the following links:
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
-    @Bean
-    TopicExchange exchange() {
-        return new TopicExchange(topicExchangeName);
-    }
+## Docker Compose Configuration
 
-    @Bean
-    Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with("foo.bar.#");
-    }
+Your `docker-compose.yml` file should contain the following configuration:
 
-    @Bean
-    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
-                                             MessageListenerAdapter listenerAdapter) {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory);
-        container.setQueueNames(queueName);
-        container.setMessageListener(listenerAdapter);
-        return container;
-    }
+```yaml
+version: '2'
 
-    @Bean
-    MessageListenerAdapter listenerAdapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "receive");
-    }
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+```
 
-    public static void main(String[] args) throws InterruptedException {
-        SpringApplication.run(RabbitmqExampleApplication.class, args).close();
-    }
-}
+## RabbitMQ Management Console
+After starting the RabbitMQ service, you can access the RabbitMQ management console through your web browser:
+
+URL: http://localhost:15672
+Default username: guest
+Default password: guest
+This management console allows you to monitor and manage the RabbitMQ server.
