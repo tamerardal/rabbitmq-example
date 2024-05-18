@@ -1,0 +1,4 @@
+### send message
+POST {{end-point}}message?message="Hello, RabbitMQ!"
+Host: localhost:8080
+Content-Type: application/x-www-form-urlencoded

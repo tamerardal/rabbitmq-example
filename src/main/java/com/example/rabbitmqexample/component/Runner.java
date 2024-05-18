@@ -1,18 +1,16 @@
 package com.example.rabbitmqexample.component;
 
-import com.example.rabbitmqexample.RabbitmqExampleApplication;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.example.rabbitmqexample.config.RabbitConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Component
 public class Runner implements CommandLineRunner {
-    private static final Logger logger = LogManager.getLogger(Runner.class);
-
     private final RabbitTemplate rabbitTemplate;
     private final Receiver receiver;
 
@@ -23,13 +21,13 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        logger.info("Sending message...");
+        log.info("Sending message...");
 
-        rabbitTemplate.convertAndSend(RabbitmqExampleApplication.topicExchangeName,
+        rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE,
                 "foo.bar.baz",
-                "Hello from RabbitMQ!");
+                "Application started!");
 
         receiver.getLatch().await(10000L, TimeUnit.MILLISECONDS);
-        logger.info("Message sent!");
+        log.info("Message sent!");
     }
 }
