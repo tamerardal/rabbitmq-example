@@ -13,6 +13,7 @@ This is a simple Spring Boot application demonstrating the usage of RabbitMQ for
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
+- [RabbitMQ Docker](#RabbitMQwithDocker)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
@@ -102,3 +103,9 @@ URL: http://localhost:15672
 Default username: guest
 Default password: guest
 This management console allows you to monitor and manage the RabbitMQ server.
+
+# Contributing
+Contributions are always welcome! Please feel free to submit a Pull Request.
+
+# Contact
+If you have any questions or feedback, please contact me at [tamerardaal@gmail.com]. 
