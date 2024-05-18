@@ -99,10 +99,10 @@ services:
 ## RabbitMQ Management Console
 After starting the RabbitMQ service, you can access the RabbitMQ management console through your web browser:
 
-URL: http://localhost:15672
-Default username: guest
-Default password: guest
-This management console allows you to monitor and manage the RabbitMQ server.
+- URL: http://localhost:15672
+- Default username: guest
+- Default password: guest
+- This management console allows you to monitor and manage the RabbitMQ server.
 
 # Contributing
 Contributions are always welcome! Please feel free to submit a Pull Request.
