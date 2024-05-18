@@ -33,7 +33,7 @@ This application showcases a basic example of sending and receiving messages usi
 Before you begin, ensure you have met the following requirements:
 
 - Java 17 or later
-- Maven 3.6.0 or later
+- Gradle 3.6.0 or later
 - RabbitMQ server running locally on default port 5672
 
 ## Installation
@@ -45,10 +45,10 @@ Before you begin, ensure you have met the following requirements:
     cd rabbitmq-example
     ```
 
-2. Build the project using Maven:
+2. Build the project using Gradle:
 
     ```bash
-    mvn clean install
+    gradle clean build
     ```
 
 ## Usage
@@ -56,7 +56,7 @@ Before you begin, ensure you have met the following requirements:
 1. Run the Spring Boot application:
 
     ```bash
-    mvn spring-boot:run
+    gradle bootRun
     ```
 
 2. The application will send a message to the RabbitMQ exchange and log the received message.
