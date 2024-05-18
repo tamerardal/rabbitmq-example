@@ -48,7 +48,7 @@ Before you begin, ensure you have met the following requirements:
 2. Build the project using Gradle:
 
     ```bash
-    gradle clean build
+    ./gradlew clean build
     ```
 
 ## Usage
@@ -56,7 +56,7 @@ Before you begin, ensure you have met the following requirements:
 1. Run the Spring Boot application:
 
     ```bash
-    gradle bootRun
+    ./gradlew bootRun
     ```
 
 2. The application will send a message to the RabbitMQ exchange and log the received message.
